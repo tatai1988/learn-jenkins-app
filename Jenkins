@@ -9,24 +9,8 @@ pipeline {
                 sh '''
                 echo 'this is my first jenkins training'
             
-                whoami
-                mkdir -p build
-                cd ./build
-                touch steps.txt
-                pwd
-                echo "first steps to add ---" >> /var/jenkins_home/workspace/hello-world-pipeline/build/steps.txt
-                cat /var/jenkins_home/workspace/hello-world-pipeline/build/steps.txt
-                echo "second steps to add ---" >> /var/jenkins_home/workspace/hello-world-pipeline/build/steps.txt
-                cat /var/jenkins_home/workspace/hello-world-pipeline/build/steps.txt
-                '''
-                
             }
         }
     }
-    post {
-        success {
-            archiveArtifacts artifacts: 'build/**'
-        }
-        }
         
 }
