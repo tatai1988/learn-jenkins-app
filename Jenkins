@@ -2,14 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Buil') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps {
-                cleanWs()
-                echo 'Hello World'
-                sh '''
-                echo 'this is my first jenkins training'
-                '''
-            
+            sh '''
+                ls -la
+                node --version
+                npm --version
+                npm ci
+                npm run build
+                ls -la
+            '''
             }
         }
     }
