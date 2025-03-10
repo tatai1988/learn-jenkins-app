@@ -8,6 +8,7 @@ pipeline {
                 echo 'Hello World'
                 sh '''
                 echo 'this is my first jenkins training'
+                '''
             
             }
         }
