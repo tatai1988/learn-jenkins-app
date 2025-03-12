@@ -81,7 +81,9 @@ pipeline {
             }
         }
         stage('Approval'){
-            input message: 'please approve to deploy in Prod', ok: 'Yes proceed to Prod'
+            steps{
+                input message: 'please approve to deploy in Prod', ok: 'Yes proceed to Prod'
+            }
         }
         stage('Deploy in Prod') {
             agent {
