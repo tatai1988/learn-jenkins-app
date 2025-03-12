@@ -75,10 +75,13 @@ pipeline {
                 node_modules/.bin/netlify --version
                 echo "Deploying to staging site id : $NETLIFY_SITE_ID"
                 node_modules/.bin/netlify status
-                node_modules/.bin/netlify deploy --dir=build --prod
+                node_modules/.bin/netlify deploy --dir=build
 
             '''
             }
+        }
+        stage('Approval'){
+            input message: 'please approve to deploy in Prod', ok: 'Yes proceed to Prod'
         }
         stage('Deploy in Prod') {
             agent {
@@ -93,7 +96,7 @@ pipeline {
                 node_modules/.bin/netlify --version
                 echo "Deploying to production site id : $NETLIFY_SITE_ID"
                 node_modules/.bin/netlify status
-                node_modules/.bin/netlify deploy --dir=build 
+                node_modules/.bin/netlify deploy --dir=build --prod
 
             '''
             }
