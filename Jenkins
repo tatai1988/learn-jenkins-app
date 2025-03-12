@@ -82,7 +82,9 @@ pipeline {
         }
         stage('Approval'){
             steps{
-                input message: 'please approve to deploy in Prod', ok: 'Yes proceed to Prod'
+                timeout(time: 1 , unit: 'MINUTES') {
+                    input message: 'please approve to deploy in Prod', ok: 'Yes proceed to Prod'
+                }
             }
         }
         stage('Deploy in Prod') {
